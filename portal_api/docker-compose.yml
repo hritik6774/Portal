@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+
+  flask:
+    build: .
+    container_name: portal_api
+    restart: always
+    environment:
+      - APP_NAME=portal_api
+      - PORT=8080
+    ports:
+      - 8080:8080
