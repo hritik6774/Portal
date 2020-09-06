@@ -10,7 +10,7 @@ The server-side API is a **dockerized** application, hence you will need the fol
 
 The API can then be run by running the following commands on your terminal: 
 ```shell
-cd server
+cd portal_api
 docker-compose build
 docker-compose up
 ```
