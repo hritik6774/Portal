@@ -14,3 +14,9 @@ cd server
 docker-compose build
 docker-compose up
 ```
+
+To test that the API is working as expected, you can hit the **health** endpoint by entering *http://localhost:8080/health* in your browser. The following response should be returned: 
+
+```json
+{"status": "Healthy!"}
+```
