@@ -9,4 +9,4 @@ api = Api(app)
 api.add_resource(Health, '/health')
 
 if __name__ == "__main__":
-    app.run(port=5002, debug=True)
+    app.run(debug=True)
