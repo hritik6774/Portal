@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+
+  flask:
+    build: portal_api
+    container_name: portal_api
+    restart: always
+    environment:
+      - APP_NAME=portal_api
+    expose:
+      - 8080
+
+  nginx:
+    build: portal_nginx
+    container_name: portal_nginx
+    restart: always
+    ports:
+      - "8080:8080"
