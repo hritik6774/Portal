@@ -6,7 +6,7 @@ The Tech+ UW Portal is the main landing site for current/prospective members and
 ## Running the Server-Side API
 The server-side API is a **dockerized** application, hence you will need the following installations on your machine: 
 - [Docker](https://docs.docker.com/desktop/)
-- [Docker-Compose](https://docs.docker.com/compose/)
+- [Docker-Compose](https://docs.docker.com/compose/install/)
 
 The API can then be run by running the following commands on your terminal: 
 ```shell

@@ -1,4 +1,4 @@
-# Use the Python3.7.2 container image
+# Use the Python3.8.5 container image
 FROM python:3.8.5-alpine3.12
 
 # Set the working directory to /app
