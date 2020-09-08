@@ -11,8 +11,7 @@ The server-side API is a **dockerized** application, hence you will need the fol
 The API can then be run by running the following commands on your terminal: 
 ```shell
 cd portal_api
-docker-compose build
-docker-compose up
+docker-compose up -d --build
 ```
 
 To test that the API is working as expected, you can hit the **health** endpoint by entering *http://localhost:8080/health* in your browser. The following response should be returned: 
