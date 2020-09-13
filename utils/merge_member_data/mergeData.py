@@ -9,9 +9,14 @@ import numpy as np
 f20ResumeCritiqueReviewee = pd.read_csv('data/[F20] Resume Critique Reviewee.csv')
 f20ResumeCritiqueReviewer = pd.read_csv('data/[F20] Resume Critique Reviewer.csv')
 f20KickoffQna = pd.read_csv('data/[F20] Tech+ 101 Kick-off Q&A Panel Sign ups.csv')
+f20Mentees = pd.read_csv('data/[F20] Accepted Mentees.csv')
+f20Mentors = pd.read_csv('data/[F20] Accepted Mentors.csv')
 s20CoffeeChatsMentees = pd.read_csv('data/[S20] Coffee Chats Mentees.csv')
 s20CoffeeChatsMentors = pd.read_csv('data/[S20] Coffee Chats Mentors.csv')
 mentorshipDatabase = pd.read_csv('data/Mentorship Program Database.csv')
+
+print(f20Mentees.columns)
+print(f20Mentors.columns)
 
 # lists of different entries of programs to help with data cleaning
 csbba = ['Computer Science and Business Administration Double Degree',
@@ -28,14 +33,19 @@ csbba = ['Computer Science and Business Administration Double Degree',
     'Business Administration & Computer Science Double Degree',
     'Computer Science & Business Administration',
     'BCS/BBA',
-    'Computer Science and Business Administration',
     'bba/bcs double degree',
     'Double Degree in Computer Science and Business Administration',
     'CS/BBA (WLU) Double Degree' ,
     'CSBBA',
     'CS / BBA',
     'Double Degree CS and BBA',
-    'CS/BBA DD'
+    'CS/BBA DD',
+    'Business and Computer Science Double Degree',
+    'Business Administration and Computer Science Double Degree',
+    'CS & BBA Double Degree',
+    'CS/BBA Double Degree',
+    'CS+BBA (uWaterloo side)',
+    'UW CS/BBA' 
     ]
 
 cs = ['Computer science',
@@ -49,7 +59,11 @@ cs = ['Computer science',
     'computer science',
     'Computer science ',
     'CS Coop',
-    "Computer Science '17" 
+    "Computer Science '17",
+    'Honours Computer Science',
+    'Honors Computer Science ',
+    'Computer Science co-op',
+    'Computer Science (co-op)'
 ]
 
 ce = ['CE', 'Computer Engineering', 'Computer Engineering ', 'Ce', 'Comp. Eng', 'Computer Engineering (Starting 1A in Fall 2020)', 'Computer engineering' ]
@@ -57,7 +71,8 @@ ce = ['CE', 'Computer Engineering', 'Computer Engineering ', 'Ce', 'Comp. Eng', 
 se = [ 'Software Engineering 2024',
     'Software Engineering',
     'Software Engineering ',
-    'SE'
+    'SE',
+    'soft eng'
 ]
 
 mathbba = ['Double Degree Math/BBA', 'MathBBA Double Degree' , 'BMath/BBA DD']
@@ -132,7 +147,12 @@ def cleanData(CSV, role, rename, term):
     # select and create relevant columns
     CSV = CSV[['Email', 'First Name', 'Last Name', 'Pronouns', 'Academic Program', 'Term']]
     CSV["Name"] = CSV["First Name"] + " " + CSV["Last Name"]
+    CSV.loc[CSV['First Name'].isnull() & CSV['Last Name'].notnull(), 'Name'] = CSV['Last Name']
+    CSV.loc[CSV['First Name'].notnull() & CSV['Last Name'].isnull(), 'Name'] = CSV['First Name']
     CSV.drop(["First Name", "Last Name"], inplace=True, axis=1)
+
+    # drop rows with empty name
+    CSV.dropna(subset=['Name'], inplace=True)
 
     # clean program names to remove response errors and combine different versions of the same program
     # list of conditions to help with cleaning Academic Program
@@ -237,6 +257,7 @@ def cleanData(CSV, role, rename, term):
 coffeeChatsRename = {"Email Address":"Email","Preferred First Name":"First Name", "Preferred Pronouns (if you are comfortable sharing)":"Pronouns", "Academic Program ":"Academic Program", "Fall 2020 School Term:":"Term"}
 resumeCritiqueRename = {"Username":"Email","First Name:":"First Name", "Last Name:":"Last Name", "What are your pronouns?":"Pronouns", "Academic Program:":"Academic Program", "Fall 2020 School Term:":"Term"}
 kickoffRename = {"Email Address:":"Email","First Name:":"First Name", "Last Name:":"Last Name", "Academic program:":"Academic Program"}
+mentorshipRename = {"Email Address":"Email", "Fall 2020 School Term:":"Term"}
 
 # clean and merge each dataframe with final dataframe, starting from oldest to newest to ensure newer data replaces older data
 mentorshipDatabase = cleanData(s20CoffeeChatsMentees, "S20 Coffee Chat Mentee", coffeeChatsRename, 'S20')
@@ -244,6 +265,8 @@ mentorshipDatabase = cleanData(s20CoffeeChatsMentors, "S20 Coffee Chat Mentee", 
 mentorshipDatabase = cleanData(f20ResumeCritiqueReviewee, "F20 Resume Critique Reviewee", resumeCritiqueRename, 'F20')
 mentorshipDatabase = cleanData(f20ResumeCritiqueReviewer, "F20 Resume Critique Reviewer", resumeCritiqueRename, 'F20')
 mentorshipDatabase = cleanData(f20KickoffQna, "F20 Tech+ 101 Kickoff Attendee", kickoffRename, 'F20')
+mentorshipDatabase = cleanData(f20Mentors, "F20 Mentor", mentorshipRename, 'F20')
+mentorshipDatabase = cleanData(f20Mentees, "F20 Mentee", mentorshipRename, 'F20')
 
 # remove any potential duplicates
 mentorshipDatabase.drop_duplicates()
