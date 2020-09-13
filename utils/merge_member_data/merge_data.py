@@ -73,20 +73,20 @@ def clean_data(CSV, role, rename, term):
         ]
 
     # final Program name assigned to each condition
-    values = [COMP_SCI + ', ' + BBA, 
-        COMP_SCI, 
-        COMP_ENG, 
-        SOFT_ENG, 
+    values = [CS + ', ' + BBA, 
+        CS, 
+        CE, 
+        SE, 
         MATH + ', ' + BBA, 
         SYDE, 
         MATH,
-        COMP_SCI + ', ' + STAT, 
-        COMP_SCI + ', ' + BUSINESS,
+        CS + ', ' + STAT, 
+        CS + ', ' + BUS,
         ECE, 
-        MECHATRONICS,
+        MTE,
         AFM,
         CFM,
-        BIOMED,
+        BME,
         CSV[ACADEMIC_PROGRAM]]
 
     # create a new column, Program, and assign values to it using conditions and values defined above
