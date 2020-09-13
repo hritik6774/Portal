@@ -15,9 +15,6 @@ s20CoffeeChatsMentees = pd.read_csv('data/[S20] Coffee Chats Mentees.csv')
 s20CoffeeChatsMentors = pd.read_csv('data/[S20] Coffee Chats Mentors.csv')
 mentorshipDatabase = pd.read_csv('data/Mentorship Program Database.csv')
 
-print(f20Mentees.columns)
-print(f20Mentors.columns)
-
 # lists of different entries of programs to help with data cleaning
 csbba = ['Computer Science and Business Administration Double Degree',
     'Computer Science and Business Double Degree',
