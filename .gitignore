@@ -1,3 +1,5 @@
 .vscode/
 __pycache__/
 venv/
+utils/merge_member_data/data/
+utils/merge_member_data/mentorship_database.csv
