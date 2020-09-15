@@ -64,7 +64,7 @@ syde = ['SYDE',
     'Systems design engineering ' 
 ]
 
-mathematics = ['Honours Mathematics', 
+math = ['Honours Mathematics', 
     'Mathematics',
     'Bachelors of Mathematics ',
     'Mathematics Honours Co-op',
@@ -81,7 +81,7 @@ csbus = ['Computer Science and Business',  'Computer Science / Business ']
 
 ece = ['ECE2T2', 'ECE']
 
-mechatronicseng = ['Mechatronics Engineering', 'Mechatronics', 'Mechatronics Engineering ']
+mte = ['Mechatronics Engineering', 'Mechatronics', 'Mechatronics Engineering ']
 
 afm = ['AFM' ,  'Accounting and Financial Management', 'AFM ' ]
 
@@ -89,4 +89,4 @@ cfm = ['Computing Financial Management',
  'Computing and Financial Management',
  'Computing Financial Management ']
 
-biomedeng = ['Biomedical engineering', 'Biomedical Engineering', 'Biomedical Engineering ']
+bme = ['Biomedical engineering', 'Biomedical Engineering', 'Biomedical Engineering ']

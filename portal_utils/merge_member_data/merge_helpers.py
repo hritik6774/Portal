@@ -15,14 +15,15 @@ def combine(merged, col):
     return merged
 
 # combines duplicate columns after merging
-# selects non-null value first, if both values are not null, concatenates values with a comma
+# selects non-null value first, if both values are not null and are different, concatenates values with a comma
 def concat_combine(merged, col):
     x = col + '_x'
     y = col + '_y'
 
     merged.loc[merged[y].isnull(), col] = merged[x]
     merged.loc[merged[x].isnull(), col] = merged[y]
-    merged.loc[merged[x].notnull() & merged[y].notnull(), col] = merged[x] + ', ' + merged[y]
+    merged.loc[merged[x].notnull() & merged[y].notnull() & ~(merged[x] == merged[y]), col] = merged[x] + ', ' + merged[y]
+    merged.loc[merged[x].notnull() & merged[y].notnull() & merged[x] == merged[y], col] = merged[y]
 
     merged.drop([x, y], inplace=True, axis=1)
 

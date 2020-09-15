@@ -50,15 +50,15 @@ def clean_data(CSV, role, rename, term):
         (CSV[ACADEMIC_PROGRAM].isin(se)),
         (CSV[ACADEMIC_PROGRAM].isin(mathbba)),
         (CSV[ACADEMIC_PROGRAM].isin(syde)),
-        (CSV[ACADEMIC_PROGRAM].isin(mathematics)),
+        (CSV[ACADEMIC_PROGRAM].isin(math)),
         (CSV[ACADEMIC_PROGRAM].isin(statcs)),
         (CSV[ACADEMIC_PROGRAM].isin(csbus)),
         (CSV[ACADEMIC_PROGRAM].isin(ece)),
-        (CSV[ACADEMIC_PROGRAM].isin(mechatronicseng)),
+        (CSV[ACADEMIC_PROGRAM].isin(mte)),
         (CSV[ACADEMIC_PROGRAM].isin(afm)),
         (CSV[ACADEMIC_PROGRAM].isin(cfm)),
-        (CSV[ACADEMIC_PROGRAM].isin(biomedeng)),
-        (~(CSV[ACADEMIC_PROGRAM].isin(mathematics)) & ~(CSV[ACADEMIC_PROGRAM].isin(csbba)) & ~(CSV[ACADEMIC_PROGRAM].isin(cs)) &
+        (CSV[ACADEMIC_PROGRAM].isin(bme)),
+        (~(CSV[ACADEMIC_PROGRAM].isin(math)) & ~(CSV[ACADEMIC_PROGRAM].isin(csbba)) & ~(CSV[ACADEMIC_PROGRAM].isin(cs)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(ce)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(se)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(mathbba)) &
@@ -66,10 +66,10 @@ def clean_data(CSV, role, rename, term):
         ~(CSV[ACADEMIC_PROGRAM].isin(statcs)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(csbus)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(ece)) &
-        ~(CSV[ACADEMIC_PROGRAM].isin(mechatronicseng)) &
+        ~(CSV[ACADEMIC_PROGRAM].isin(mte)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(afm)) &
         ~(CSV[ACADEMIC_PROGRAM].isin(cfm)) &
-        ~(CSV[ACADEMIC_PROGRAM].isin(biomedeng)))
+        ~(CSV[ACADEMIC_PROGRAM].isin(bme)))
         ]
 
     # final Program name assigned to each condition
@@ -156,7 +156,7 @@ mentorship_database = clean_data(f20_mentors, "F20 " + MENTOR, mentorship_rename
 mentorship_database = clean_data(f20_mentees, "F20 " + MENTEE, mentorship_rename, 'F20')
 
 # remove any potential duplicates
-mentorship_database.drop_duplicates()
+mentorship_database.drop_duplicates(inplace=True)
 
 # export as csv
-mentorship_database.to_csv("mentorship_database.csv")
+mentorship_database.to_csv("mentorship_database.csv", index=False)
