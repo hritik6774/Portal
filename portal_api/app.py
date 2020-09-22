@@ -6,6 +6,12 @@ from resources.health import Health
 app = Flask(__name__)
 api = Api(app)
 
+
+@app.route("/")
+def placeholder():
+    return 'Coming soon...'
+
+
 api.add_resource(Health, '/health')
 
 if __name__ == "__main__":
