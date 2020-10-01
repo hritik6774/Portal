@@ -1,4 +1,4 @@
-# Tech+ UW Portal
+# Tech+ UW Portal for an amazing project
 
 ## About
 The Tech+ UW Portal is the main landing site for current/prospective members and sponsors to learn about Tech+. Moreover, this portal also enables mentors and mentees to update their profiles and potentially maintain mentor-mentee relationships.
